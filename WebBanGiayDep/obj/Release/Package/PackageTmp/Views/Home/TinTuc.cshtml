@@ -1,0 +1,152 @@
+﻿
+@{
+    ViewBag.Title = "TinTuc";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="about-section">
+    <h1>Tin tức</h1>
+    <br>
+</div>
+
+<style>
+    h1 {
+        font-weight: bold;
+        font-size: 30px;
+    }
+
+    h2 {
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    html {
+        box-sizing: border-box;
+    }
+
+    *, *:before, *:after {
+        box-sizing: inherit;
+    }
+
+    .column {
+        float: left;
+        width: 33.3%;
+        margin-bottom: 50px;
+        padding: 0 8px;
+    }
+
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .container {
+        padding: 0 16px;
+        width: 100%;
+        height: 280px;
+    }
+
+        .container::after, .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+    .title {
+        color: grey;
+    }
+
+    .button {
+        border: none;
+        outline: 0;
+        display: inline-block;
+        padding: 8px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+    }
+
+        .button:hover {
+            background-color: #555;
+        }
+
+    .row {
+        margin: 0px 200px 300px 200px;
+    }
+
+    .about-section {
+        font-weight: bold;
+        font-size: 30px;
+        margin: 20px 0 0 200px
+    }
+</style>
+<div class="row">
+    <div class="column">
+        <div class="card">
+            <img src="~/images/tintuc1.jpg" alt="Jane" style="width: 100%; height: 230px; ">
+            <div class="container">
+                <h2>CÁCH LÀM SẠCH GIẦY DA LỘN NAM, NỮ HIỆU QUẢ NHẤT</h2>
+                <br>
+                <p class="title">Cao Nguyen | 28/12/2021</p>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <p>Những sản phẩm da lộn luôn có những sức hút khó cưỡng bởi sự cá tính và không kém phần cổ điển mà nó mang...</p>
+                <br>
+                <a class="elementor-post__read-more" href="https://saigonsneaker.com/lifestyle/vintage-la-gi/">  Đọc tiếp » </a>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="card">
+            <img src="~/images/tintuc2.jpg" alt="Mike" style="width: 100%; height: 230px; ">
+            <div class="container">
+                <h2>VINTAGE STYLE LÀ GÌ? HƯỚNG DẪN PHỐI ĐỒ THEO PHONG CÁCH THỜI TRANG VINTAGE</h2>
+                <br>
+                <p class="title">Huu Tien | 28/12/2021</p>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <p>Khoảng thời gian gần đây, SaigonSneaker.com nhận được khá nhiều câu hỏi và thắc mắc về một phong cách thời trang đang dần lấy lại... </p>
+                <br>
+                <a class="elementor-post__read-more" href="https://saigonsneaker.com/lifestyle/vintage-la-gi/">
+                    Đọc tiếp »
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="card">
+            <img src="~/images/tintuc3.jpg" alt="John" style=" width: 100%; height: 230px;">
+            <div class="container">
+                <h2>CUSTOM LÀ GÌ? CÁCH CUSTOM SNEAKER BẰNG MÀU ACRYLIC CỰC ĐẸP</h2>
+                <br>
+                <p class="title">Gia Hao | 28/12/2021</p>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <p>Custom giày là một xu hướng đã du nhập vào Việt Nam một thời gian và nhận được sự hưởng ứng mạnh từ các bạn...</p>
+                <br>
+                <a class="elementor-post__read-more" href="https://saigonsneaker.com/lifestyle/cach-custom-giay-tai-nha/">
+                    Đọc tiếp »
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

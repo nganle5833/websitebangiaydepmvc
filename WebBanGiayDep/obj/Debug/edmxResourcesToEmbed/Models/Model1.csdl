@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ShopGiayModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ShopGiayEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CT_DONHANG" EntityType="ShopGiayModel.CT_DONHANG" />
+    <EntitySet Name="DONHANGs" EntityType="ShopGiayModel.DONHANG" />
+    <EntitySet Name="KHACHHANGs" EntityType="ShopGiayModel.KHACHHANG" />
+    <EntitySet Name="LOAIGIAYs" EntityType="ShopGiayModel.LOAIGIAY" />
+    <EntitySet Name="NHACUNGCAPs" EntityType="ShopGiayModel.NHACUNGCAP" />
+    <EntitySet Name="PHANQUYENs" EntityType="ShopGiayModel.PHANQUYEN" />
+    <EntitySet Name="QUANLies" EntityType="ShopGiayModel.QUANLY" />
+    <EntitySet Name="SANPHAMs" EntityType="ShopGiayModel.SANPHAM" />
+    <EntitySet Name="sysdiagrams" EntityType="ShopGiayModel.sysdiagram" />
+    <EntitySet Name="THUONGHIEUx" EntityType="ShopGiayModel.THUONGHIEU" />
+    <EntitySet Name="YKIENKHACHHANGs" EntityType="ShopGiayModel.YKIENKHACHHANG" />
+    <AssociationSet Name="FK_CT_DONHANG_MaDonHang" Association="ShopGiayModel.FK_CT_DONHANG_MaDonHang">
+      <End Role="DONHANG" EntitySet="DONHANGs" />
+      <End Role="CT_DONHANG" EntitySet="CT_DONHANG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DONHANG" Association="ShopGiayModel.FK_DONHANG">
+      <End Role="DONHANG" EntitySet="DONHANGs" />
+      <End Role="CT_DONHANG" EntitySet="CT_DONHANG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SANPHAM_2" Association="ShopGiayModel.FK_SANPHAM_2">
+      <End Role="SANPHAM" EntitySet="SANPHAMs" />
+      <End Role="CT_DONHANG" EntitySet="CT_DONHANG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KHACHHANG_2" Association="ShopGiayModel.FK_KHACHHANG_2">
+      <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+      <End Role="DONHANG" EntitySet="DONHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LOAIGIAY" Association="ShopGiayModel.FK_LOAIGIAY">
+      <End Role="LOAIGIAY" EntitySet="LOAIGIAYs" />
+      <End Role="SANPHAM" EntitySet="SANPHAMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NHACUNGCAP" Association="ShopGiayModel.FK_NHACUNGCAP">
+      <End Role="NHACUNGCAP" EntitySet="NHACUNGCAPs" />
+      <End Role="SANPHAM" EntitySet="SANPHAMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHANQUYEN_QUANLY" Association="ShopGiayModel.FK_PHANQUYEN_QUANLY">
+      <End Role="QUANLY" EntitySet="QUANLies" />
+      <End Role="PHANQUYEN" EntitySet="PHANQUYENs" />
+    </AssociationSet>
+    <AssociationSet Name="FL_THUONGHIEU" Association="ShopGiayModel.FL_THUONGHIEU">
+      <End Role="THUONGHIEU" EntitySet="THUONGHIEUx" />
+      <End Role="SANPHAM" EntitySet="SANPHAMs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CT_DONHANG">
+    <Key>
+      <PropertyRef Name="MaDonHang" />
+      <PropertyRef Name="MaGiay" />
+    </Key>
+    <Property Name="MaDonHang" Type="Int32" Nullable="false" />
+    <Property Name="MaGiay" Type="Int32" Nullable="false" />
+    <Property Name="GiaLucBan" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="SoLuong" Type="Int32" Nullable="false" />
+    <Property Name="ThanhTien" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="DONHANG" Relationship="ShopGiayModel.FK_CT_DONHANG_MaDonHang" FromRole="CT_DONHANG" ToRole="DONHANG" />
+    <NavigationProperty Name="DONHANG1" Relationship="ShopGiayModel.FK_DONHANG" FromRole="CT_DONHANG" ToRole="DONHANG" />
+    <NavigationProperty Name="SANPHAM" Relationship="ShopGiayModel.FK_SANPHAM_2" FromRole="CT_DONHANG" ToRole="SANPHAM" />
+  </EntityType>
+  <EntityType Name="DONHANG">
+    <Key>
+      <PropertyRef Name="MaDonHang" />
+    </Key>
+    <Property Name="MaDonHang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TinhTrangGiaoHang" Type="Boolean" />
+    <Property Name="NgayDat" Type="DateTime" Precision="3" />
+    <Property Name="NgayGiao" Type="DateTime" Precision="3" />
+    <Property Name="TongTien" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="MaKH" Type="Int32" />
+    <NavigationProperty Name="CT_DONHANG" Relationship="ShopGiayModel.FK_CT_DONHANG_MaDonHang" FromRole="DONHANG" ToRole="CT_DONHANG" />
+    <NavigationProperty Name="CT_DONHANG1" Relationship="ShopGiayModel.FK_DONHANG" FromRole="DONHANG" ToRole="CT_DONHANG" />
+    <NavigationProperty Name="KHACHHANG" Relationship="ShopGiayModel.FK_KHACHHANG_2" FromRole="DONHANG" ToRole="KHACHHANG" />
+  </EntityType>
+  <EntityType Name="KHACHHANG">
+    <Key>
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaKH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TaiKhoanKH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MatKhau" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HoTen" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmailKH" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="DiaChiKH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DienThoaiKH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="3" />
+    <Property Name="TrangThai" Type="Boolean" />
+    <NavigationProperty Name="DONHANGs" Relationship="ShopGiayModel.FK_KHACHHANG_2" FromRole="KHACHHANG" ToRole="DONHANG" />
+  </EntityType>
+  <EntityType Name="LOAIGIAY">
+    <Key>
+      <PropertyRef Name="MaLoai" />
+    </Key>
+    <Property Name="MaLoai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoai" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TrangThai" Type="Boolean" />
+    <Property Name="GioiTinh" Type="Boolean" />
+    <NavigationProperty Name="SANPHAMs" Relationship="ShopGiayModel.FK_LOAIGIAY" FromRole="LOAIGIAY" ToRole="SANPHAM" />
+  </EntityType>
+  <EntityType Name="NHACUNGCAP">
+    <Key>
+      <PropertyRef Name="MaNCC" />
+    </Key>
+    <Property Name="MaNCC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenNCC" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TrangThai" Type="Boolean" />
+    <NavigationProperty Name="SANPHAMs" Relationship="ShopGiayModel.FK_NHACUNGCAP" FromRole="NHACUNGCAP" ToRole="SANPHAM" />
+  </EntityType>
+  <EntityType Name="PHANQUYEN">
+    <Key>
+      <PropertyRef Name="MaPQ" />
+    </Key>
+    <Property Name="MaPQ" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaQL" Type="Int32" Nullable="false" />
+    <Property Name="QL_Admin" Type="Boolean" Nullable="false" />
+    <Property Name="QL_NhaCungCap" Type="Boolean" Nullable="false" />
+    <Property Name="QL_SanPham" Type="Boolean" Nullable="false" />
+    <Property Name="QL_ThuongHieu" Type="Boolean" Nullable="false" />
+    <Property Name="QL_LoaiGiay" Type="Boolean" Nullable="false" />
+    <Property Name="QL_DonHang" Type="Boolean" Nullable="false" />
+    <Property Name="QL_KhachHang" Type="Boolean" Nullable="false" />
+    <Property Name="QL_YKienKhachHang" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="QUANLY" Relationship="ShopGiayModel.FK_PHANQUYEN_QUANLY" FromRole="PHANQUYEN" ToRole="QUANLY" />
+  </EntityType>
+  <EntityType Name="QUANLY">
+    <Key>
+      <PropertyRef Name="MaQL" />
+    </Key>
+    <Property Name="MaQL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TaiKhoanQL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MatKhau" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmailQL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DienThoaiQL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="TrangThai" Type="Boolean" />
+    <Property Name="Avatar" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PHANQUYENs" Relationship="ShopGiayModel.FK_PHANQUYEN_QUANLY" FromRole="QUANLY" ToRole="PHANQUYEN" />
+  </EntityType>
+  <EntityType Name="SANPHAM">
+    <Key>
+      <PropertyRef Name="MaGiay" />
+    </Key>
+    <Property Name="MaGiay" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenGiay" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Size" Type="Byte" Nullable="false" />
+    <Property Name="AnhBia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GiaBan" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="MaThuongHieu" Type="Int32" />
+    <Property Name="TrangThai" Type="Boolean" />
+    <Property Name="MaNCC" Type="Int32" />
+    <Property Name="MaLoai" Type="Int32" />
+    <Property Name="ThoiGianBaoHanh" Type="Int32" />
+    <Property Name="NgayCapNhat" Type="DateTime" Precision="3" />
+    <Property Name="SoLuongTon" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CT_DONHANG" Relationship="ShopGiayModel.FK_SANPHAM_2" FromRole="SANPHAM" ToRole="CT_DONHANG" />
+    <NavigationProperty Name="LOAIGIAY" Relationship="ShopGiayModel.FK_LOAIGIAY" FromRole="SANPHAM" ToRole="LOAIGIAY" />
+    <NavigationProperty Name="NHACUNGCAP" Relationship="ShopGiayModel.FK_NHACUNGCAP" FromRole="SANPHAM" ToRole="NHACUNGCAP" />
+    <NavigationProperty Name="THUONGHIEU" Relationship="ShopGiayModel.FL_THUONGHIEU" FromRole="SANPHAM" ToRole="THUONGHIEU" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="THUONGHIEU">
+    <Key>
+      <PropertyRef Name="MaThuongHieu" />
+    </Key>
+    <Property Name="MaThuongHieu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenThuongHieu" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SANPHAMs" Relationship="ShopGiayModel.FL_THUONGHIEU" FromRole="THUONGHIEU" ToRole="SANPHAM" />
+  </EntityType>
+  <EntityType Name="YKIENKHACHHANG">
+    <Key>
+      <PropertyRef Name="MAYKIEN" />
+    </Key>
+    <Property Name="MAYKIEN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HoTen" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NgayGui" Type="DateTime" Precision="0" />
+    <Property Name="NoiDung" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_CT_DONHANG_MaDonHang">
+    <End Type="ShopGiayModel.DONHANG" Role="DONHANG" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ShopGiayModel.CT_DONHANG" Role="CT_DONHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DONHANG">
+        <PropertyRef Name="MaDonHang" />
+      </Principal>
+      <Dependent Role="CT_DONHANG">
+        <PropertyRef Name="MaDonHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DONHANG">
+    <End Type="ShopGiayModel.DONHANG" Role="DONHANG" Multiplicity="1" />
+    <End Type="ShopGiayModel.CT_DONHANG" Role="CT_DONHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DONHANG">
+        <PropertyRef Name="MaDonHang" />
+      </Principal>
+      <Dependent Role="CT_DONHANG">
+        <PropertyRef Name="MaDonHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SANPHAM_2">
+    <End Type="ShopGiayModel.SANPHAM" Role="SANPHAM" Multiplicity="1" />
+    <End Type="ShopGiayModel.CT_DONHANG" Role="CT_DONHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SANPHAM">
+        <PropertyRef Name="MaGiay" />
+      </Principal>
+      <Dependent Role="CT_DONHANG">
+        <PropertyRef Name="MaGiay" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KHACHHANG_2">
+    <End Type="ShopGiayModel.KHACHHANG" Role="KHACHHANG" Multiplicity="0..1" />
+    <End Type="ShopGiayModel.DONHANG" Role="DONHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHACHHANG">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="DONHANG">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LOAIGIAY">
+    <End Type="ShopGiayModel.LOAIGIAY" Role="LOAIGIAY" Multiplicity="0..1" />
+    <End Type="ShopGiayModel.SANPHAM" Role="SANPHAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAIGIAY">
+        <PropertyRef Name="MaLoai" />
+      </Principal>
+      <Dependent Role="SANPHAM">
+        <PropertyRef Name="MaLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NHACUNGCAP">
+    <End Type="ShopGiayModel.NHACUNGCAP" Role="NHACUNGCAP" Multiplicity="0..1" />
+    <End Type="ShopGiayModel.SANPHAM" Role="SANPHAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHACUNGCAP">
+        <PropertyRef Name="MaNCC" />
+      </Principal>
+      <Dependent Role="SANPHAM">
+        <PropertyRef Name="MaNCC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHANQUYEN_QUANLY">
+    <End Type="ShopGiayModel.QUANLY" Role="QUANLY" Multiplicity="1" />
+    <End Type="ShopGiayModel.PHANQUYEN" Role="PHANQUYEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QUANLY">
+        <PropertyRef Name="MaQL" />
+      </Principal>
+      <Dependent Role="PHANQUYEN">
+        <PropertyRef Name="MaQL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FL_THUONGHIEU">
+    <End Type="ShopGiayModel.THUONGHIEU" Role="THUONGHIEU" Multiplicity="0..1" />
+    <End Type="ShopGiayModel.SANPHAM" Role="SANPHAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="THUONGHIEU">
+        <PropertyRef Name="MaThuongHieu" />
+      </Principal>
+      <Dependent Role="SANPHAM">
+        <PropertyRef Name="MaThuongHieu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

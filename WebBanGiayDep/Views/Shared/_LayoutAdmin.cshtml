@@ -1,0 +1,242 @@
+﻿@{
+    var taikhoanadmin = Session["Tai"] as WebBanGiayDep.Models.QUANLY;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Title Page-->
+    <title>Admin</title>
+    <!-- Fontfaces CSS-->
+    <link href="~/Content/font-face.css" rel="stylesheet" media="all">
+    <link href="~/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="~/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="~/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="~/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+
+    <link href="~/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="~/vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="~/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="~/vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="~/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="~/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <script src="~/Content/Admin/jquery.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <!-- Main CSS-->
+    <link href="~/Content/theme.css" rel="stylesheet" media="all">
+    <style>
+        .dropbtn {
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #f1f1f1;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+
+        .page-content--bgf7 {
+            flex: 1;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+
+<body class="animsition">
+    <div class="page-wrapper">
+        <!-- menu-->
+        <header class="header-desktop3 d-none d-lg-block">
+            <div class="section__content section__content--p35">
+                <div class="header3-wrap">
+                    <div class="header__logo">
+                        <a href="@Url.Action("Index","Home")">
+                            <h4 style="color: #CCCCCC">Lutus Shop</h4>
+                        </a>
+                    </div>
+                    <div class="header__navbar">
+                        <ul class="list-unstyled">
+                            <li class="has-sub">
+                                <a href="@Url.Action("Index","Admin")">TRANG CHỦ</a>
+                            </li>
+
+                            <li class="has-sub">
+                                <a href="@Url.Action("SanPham","Admin")"><span class="bot-line"></span>QUẢN LÝ SẢN PHẨM</a>
+                                @*droplist*@
+                                <ul class="header3-sub-list list-unstyled">
+                                    <li>
+                                        <a href="@Url.Action("ThuongHieu","Admin")">QUẢN LÝ THƯƠNG HIỆU</a>
+                                        <a href="@Url.Action("NhaCungCap","Admin")">QUẢN LÝ NHÀ CUNG CẤP</a>
+                                        <a href="@Url.Action("LoaiGiay","Admin")">QUẢN LÝ LOẠI GIÀY</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="has-sub">
+                                <a href="/Admin/Order">QUẢN LÝ ĐƠN HÀNG</a>
+                            </li>
+
+                            <li class="has-sub">
+                                <a href="@Url.Action("KhachHang","Admin")">QUẢN LÝ KHÁCH HÀNG</a>
+                            </li>
+
+                            <li class="has-sub">
+                                <a href="/Admin/ListAdmin">QUẢN LÝ NHÂN VIÊN</a>
+                            </li>
+
+                            <li class="has-sub">
+                                <a href="@Url.Action("Ykienkhachhang", "Admin")">QUẢN LÝ Ý KIẾN KHÁCH HÀNG</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    @* end menu*@
+                    <div class="header__tool">
+                        <div class="account-wrap">
+                            <div class="account-item account-item--style2 clearfix js-item-menu">
+                                <div class="dropdown" style="float:right;">
+                                    <button class="dropbtn"> xin chào!!!  @Session["HoTen_Admin"]</button>
+                                    <div class="dropdown-content">
+                                        <a href="/Admin/Account">Thông tin</a>
+                                        <a href="/Admin/ChangePassword">Đổi mật khẩu</a>
+                                        <a href="/Admin/Logout">Đăng xuất</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+        <div class="page-content--bgf7">
+            @RenderBody()
+            <hr />
+
+            <!-- END COPYRIGHT-->
+        </div>
+
+        <footer class="bg-secondary text-white  ">
+            <!-- Grid container -->
+            <div class="container pt-4">
+                <!--Grid row-->
+                <div class="row">
+                    <!--Grid column-->
+                    <div class="col-md-4">
+                        <h5 class="text-uppercase mb-0"></h5>
+                        <hr />
+                        <ul class="list-unstyled text-center">
+                            <li class="pt-2">
+                                <a href="~/Views/Home/GiayNam.cshtml" class="text-white">Giày nam</a>
+                            </li>
+                            <li class="pt-2">
+                                <a href="~/Views/Home/GiayNu.cshtml" class="text-white">Giày nữ</a>
+                            </li>
+                            <li class="pt-2">
+                                <a href="~/Views/Home/GioiThieu.cshtml" class="text-white">Giới thiệu</a>
+                            </li>
+                            <li class="pt-2">
+                                <a href="~/Views/Home/TinTuc.cshtml" class="text-white">Tin Tức</a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <div class="col-md-3 text-center">
+                        <hr />
+                        <img style=" width:150px    " src="~/images/1.png" />
+                    </div>
+
+                    <!--Grid column-->
+                    <!--Grid column-->
+
+
+                    <div class="col-md-5 position-relative top-50 start-50 translate-middle">
+
+                        <ul class="text-center ">
+                            <hr />
+                            <li class="pb-2">
+                                Địa chỉ: 107 , Hùng Vương P2, Tp Tân An , Tỉnh  Long An
+                            </li>
+                            <li class="pb-2">
+                                Hotline:0333392691
+                            </li>
+                            <li class="pb-2">
+                                Thời gian làm việc: Thứ 2 - Chủ nhật: 8h00 - 22h00
+                            </li>
+                            <li class="">
+                                Gmail : nganle58330@gmail.com
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+                    <!--Grid column-->
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+            </div>
+            <!-- Grid container -->
+            <!-- Copyright -->
+            <!-- Copyright -->
+        </footer>
+        <!-- Footer -->
+        <!-- Footer -->
+
+
+
+
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="~/vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="~/vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="~/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- ~/vendor JS       -->
+    <script src="~/vendor/slick/slick.min.js"></script>
+    <script src="~/vendor/wow/wow.min.js"></script>
+    <script src="~/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="~/vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="~/vendor/counter-up/jquery.counterup.min.js"></script>
+    <script src="~/vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="~/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="~/vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="~/vendor/select2/select2.min.js"></script>
+    <!-- Main JS-->
+    <script src="~/Scripts/main.js"></script>
+
+</body>
+
+</html>
+<!-- end document-->

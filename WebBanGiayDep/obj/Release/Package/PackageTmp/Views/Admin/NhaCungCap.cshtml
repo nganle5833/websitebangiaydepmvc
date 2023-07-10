@@ -1,0 +1,96 @@
+﻿@using WebBanGiayDep.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<WebBanGiayDep.Models.NHACUNGCAP>
+
+@{
+    ViewBag.Title = "NhaCungCap";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 7px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $(".DaGiaoClick").click(function () {
+            var _MaDH = $(this).attr("data-id");
+            $.post("/Admin/TrangThaiNCC", { "id": _MaDH },
+                function (data) {
+                    $('#img_AnHien-' + _MaDH).attr('src', data);
+                });
+        });
+    });
+</script>
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+<div class="wrap" style="padding-top:2%; padding-left:10%; padding-right:10%; padding-bottom:5%">
+    <h2 style="text-align: center; ">QUẢN LÝ THÔNG TIN NHÀ CUNG CẤP</h2>
+    <a href="@Url.Action("ThemMoiNhaCungCap", "Admin")" class="button">THÊM NHÀ CUNG CẤP</a>
+    <table class="table" border="1">
+
+        <tr>
+            <th>
+                Tên nhà cung cấp
+            </th>
+            <th>
+                Địa chỉ
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenNCC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiaChi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DienThoai)
+        </td>
+        <td style="text-align: center">
+            @if (item.TrangThai == true)
+            {
+                <a href="#" class="DaGiaoClick" data-id="@item.MaNCC">
+                    <img src="/images/Admin/Icons/icon_Hien.png" id="img_AnHien-@item.MaNCC" title="Còn hàng" />
+                </a>
+            }
+            else
+            {
+                <a href="#" class="DaGiaoClick" data-id="@item.MaNCC">
+                    <img src="/images/Admin/Icons/icon_An.png" id="img_AnHien-@item.MaNCC" title="Hết hàng" />
+                </a>
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "SuaNhaCungCap", new { id = item.MaNCC }) |
+            @Html.ActionLink("Xóa", "XoaNhaCungCap", new { id = item.MaNCC })
+        </td>
+    </tr>
+        }
+    </table>
+    <br />
+    <div class="MenuTrang" style=" text-align:center">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("NhaCungCap", new { page }))
+    </div>
+</div>

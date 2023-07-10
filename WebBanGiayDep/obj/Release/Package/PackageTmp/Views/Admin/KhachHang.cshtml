@@ -1,0 +1,75 @@
+﻿@using WebBanGiayDep.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<WebBanGiayDep.Models.KHACHHANG>
+
+@{
+    ViewBag.Title = "KhachHang";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    table.center {
+        width: 780px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+<script>
+    $(function () {
+        // quản lý trạng thái của admin
+        $(".AnHienClick").click(function () {
+            var _AD = $(this).attr("data-id");
+            $.post("/Admin/UpdateTrangThaiKhachHang", { "id": _AD },
+                function (data) {
+                    $('#img_AnHien-' + _AD).attr('src', data);
+                });
+        });
+    });
+</script>
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<div class="wrap" style="padding-top:2%; padding-left:10%; padding-right:10%; padding-bottom:5%">
+    <h2 style="text-align: center; ">QUẢN LÝ THÔNG TIN KHÁCH HÀNG</h2>
+    <BR />
+    <table class="center" border="1" style="width: 1000px; text-align: center">
+        <tr>
+            <th>Tên tài khoản</th>
+            <th> Họ tên </th>
+            <th>Trạng thái</th>
+            <th>Thông tin </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style=" text-align:center">
+                    @Html.DisplayFor(modelItem => item.TaiKhoanKH)
+                </td>
+                <td style=" text-align:center">
+                    @Html.DisplayFor(modelItem => item.HoTen)
+                </td>
+                <td style="text-align: center">
+                    @if (item.TrangThai == true)
+                    {
+                        <a href="#" class="AnHienClick" data-id="@item.MaKH">
+                            <img src="~/images/Admin/Icons/icon_Hien.png" id="img_AnHien-@item.MaKH" title="Hiện" />
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="#" class="AnHienClick" data-id="@item.MaKH">
+                            <img src="~/images/Admin/Icons/icon_An.png" id="img_AnHien-@item.MaKH" title="Ẩn" />
+                        </a>
+                    }
+                </td>
+                <td style="text-align: center">
+                    @Html.ActionLink("Chi tiết", "ChiTietKhachHang", new { id = item.MaKH })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br />
+    <div class="MenuTrang" style=" text-align:center">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("KhachHang", new { page }))
+    </div>
+</div>

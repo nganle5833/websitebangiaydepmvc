@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- STATISTIC-->
+<section class="statistic">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 col-lg-3">
+                    <div class="statistic__item">
+                        <h2 class="number">@ViewBag.TotalUser</h2>
+                        <span class="desc">Khách hàng</span>
+                        <div class="icon">
+                            <i class="zmdi zmdi-account-o"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="statistic__item">
+                        <h2 class="number">@ViewBag.Total</h2>
+                        <span class="desc">Đơn Hàng</span>
+                        <div class="icon">
+                            <i class="zmdi zmdi-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="statistic__item">
+                        <h2 class="number">@ViewBag.TotalDeli</h2>
+                        <span class="desc">Đã Giao</span>
+                        <div class="icon">
+                            <i class="zmdi zmdi-truck"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="statistic__item">
+                        <h2 class="number">@ViewBag.TotalEarnings</h2>
+                        <span class="desc">Doanh Thu</span>
+                        <div class="icon">
+                            <i class="zmdi zmdi-money"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END STATISTIC-->

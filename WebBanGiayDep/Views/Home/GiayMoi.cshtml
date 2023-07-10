@@ -1,0 +1,19 @@
+﻿@model IEnumerable<WebBanGiayDep.Models.SANPHAM>
+@foreach (var item in Model)
+{
+    <div class="wmuSliderWrapper">
+        <article style="position: relative; width: 100%; opacity: 1;">
+            <div class="banner-wrap">
+                <div class="slider-left">
+                    <img src="~/images/@item.AnhBia" alt="" />
+                </div>
+                <div class="slider-right">
+                    <h2>@item.TenGiay</h2>
+                    <p>@String.Format("{0:0,0}", item.GiaBan) VNĐ</p>
+                    <div class="btn"><a href="@Url.Action("ChiTietSanPham", "Home",new {id = item.MaGiay } )">Xem thêm</a></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </article>
+    </div>
+}

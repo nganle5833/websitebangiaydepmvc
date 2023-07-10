@@ -1,0 +1,64 @@
+﻿@model WebBanGiayDep.Models.NHACUNGCAP
+
+@{
+    ViewBag.Title = "ThemMoiNhaCungCap";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="wrap" style="padding-top:2%; padding-left:10%; padding-right:10%; padding-bottom:5%">
+    <h2 style="text-align:center">THÊM MỚI NHÀ CUNG CẤP</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal" style="font-weight: bold; font-size: 16px">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.TenNCC, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TenNCC, new { htmlAttributes = new { @class = "form-control" } })
+                    <h3 id="Error">@ViewData["Error1"]</h3>
+                    @Html.ValidationMessageFor(model => model.TenNCC, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DiaChi, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                    <h3 id="Error">@ViewData["Error2"]</h3>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DienThoai, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DienThoai, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DienThoai, "", new { @class = "text-danger" })
+                    <h3 id="Error">@ViewData["Error3"]</h3>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TrangThai, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TrangThai, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TrangThai, "", new { @class = "text-danger" })
+                    <h3 id="Error">@ViewData["Error4"]</h3>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Thêm" class="btn btn-default" style="background-color: #4CAF50; color: white; font-size: 16px" />
+                </div>
+            </div>
+        </div>
+    }
+    <br />
+    <div>
+        @Html.ActionLink("Trở về trang nhà cung cấp", "NhaCungCap")
+    </div>
+</div>

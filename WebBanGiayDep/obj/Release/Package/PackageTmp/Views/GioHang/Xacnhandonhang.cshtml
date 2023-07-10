@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Xacnhandonhang";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<style>
+    h2 {
+        font-weight: bold;
+        font-size: 30px;
+        margin: 20px 100px 20px 100px;
+        
+    }
+    .xndonhang {
+        margin: 0px 200px 300px 200px;
+    }
+</style>
+<div class="xndonhang">
+    <h2>Đơn hàng của quý khách đã được ghi nhận. Chúng tôi sẽ liên hệ cho quý khách sớm nhất và nhanh chóng giao hàng đến quý khách</h2>
+    <p style=" font-size: 20px; color: blue; margin: 20px 100px 20px 100px;">
+        @Html.ActionLink("VỀ TRANG CHỦ", "Index", "Home")
+    </p>
+</div>

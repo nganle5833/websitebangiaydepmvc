@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "Dangky";
+    Layout = "~/Views/Shared/_LayoutTaiKhoan.cshtml";
+}
+
+<div class="login">
+    <div class="wrap">
+        <div class="col_1_of_login span_1_of_login">
+            <h4 class="title">BẠN ĐÃ CÓ TÀI KHOẢN</h4>
+            <h5 class="sub_title">ĐĂNG NHẬP TÀI KHOẢN</h5>
+            <div class="button1">
+                <a href="@Url.Action("Dangnhap", "User")"><input type="submit" name="Submit" value="Đăng NHẬP ngay"></a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            <div class="col_1_of_login span_1_of_login">
+                <div class="login-title">
+                    <h4 class="title">ĐĂNG KÝ TÀI KHOẢN</h4>
+                    <div class="comments-area">
+                        <form>
+                            <p>
+                                <label>Họ tên khách hàng</label>
+                                <span>*</span>
+                                @Html.TextBox("HotenKH")
+                                @ViewData["Loi1"]
+                            </p>
+
+                            <p>
+                                <label>Tên đăng nhập</label>
+                                <span>*</span>
+                                @Html.TextBox("TenDN")
+                                @ViewData["Loi2"]
+                            </p>
+
+                            <p>
+                                <label>Mật khẩu</label>
+                                <span>*</span>
+                                @Html.Password("MatKhau")
+                                @ViewData["Loi3"]
+                            </p>
+
+                            <p>
+                                <label>Nhập lại mật khẩu</label>
+                                <span>*</span>
+                                @Html.Password("MatKhauNhapLai")
+                                @ViewData["Loi4"]
+                            </p>
+
+                            <p>
+                                <label>Email</label>
+                                <span>*</span>
+                                <input type="email" name="email" style=" padding: 10px 15px; width: 97%; color: #000; font-size: 0.8125em; border: 1px solid #f0f0f0; background: #fff; outline: none; display: block; font-family: 'Open Sans', sans-serif;" />
+                                @ViewData["Loi5"]
+                            </p>
+
+                            <p>
+                                <label>Địa chỉ</label>
+                                <span>*</span>
+                                @Html.TextBox("DiaChi")
+                                @ViewData["Loi6"]
+                            </p>
+
+                            <p>
+                                <label>Số điện thoại</label>
+                                <span>*</span>
+                                @Html.TextBox("DienThoai")
+                                @ViewData["Loi7"]
+                            </p>
+
+                            <p>
+                                <label>Ngày sinh</label>
+                                <span>*</span>
+                                <input type="date" name="NgaySinh" style=" padding: 10px 15px; width: 97%; color: #000; font-size: 0.8125em; border: 1px solid #f0f0f0; background: #fff; outline: none; display: block; font-family: 'Open Sans', sans-serif;" />
+                                @ViewData["Loi8"]
+                            </p>
+
+                            <p>
+                                <input type="submit" value="Đăng ký" />
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="clear"></div>
+    </div>
+</div>

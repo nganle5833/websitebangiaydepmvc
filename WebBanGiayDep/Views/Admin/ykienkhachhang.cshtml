@@ -1,0 +1,52 @@
+﻿@using WebBanGiayDep.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<WebBanGiayDep.Models.YKIENKHACHHANG>
+
+@{
+    ViewBag.Title = "Ykienkhachhang";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<div class="wrap" style="padding-top:2%; padding-left:10%; padding-right:10%; padding-bottom:5%">
+    <h2 style="text-align: center">QUẢN LÝ Ý KIẾN KHÁCH HÀNG</h2>
+    <br />
+    <table class="table" border="1">
+        <tr>
+            <th style="width:300px"> Email khách hàng</th>
+            <th style="width:200px"> Họ tên khách hàng</th>
+            <th style="width:200px"> Ngày gửi</th>
+            <th style="width:500px"> Nội dung</th>
+            <th style="width:200px"></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoTen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayGui)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NoiDung)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.TrangThai)
+                    </td>*@
+                <td>
+                    @Html.ActionLink("Xóa", "Xoaykienkhachhang", new { id = item.MAYKIEN })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br />
+    <div class="MenuTrang" style="margin-left: 50%">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Ykienkhachhang", new { page }))
+    </div>
+</div>

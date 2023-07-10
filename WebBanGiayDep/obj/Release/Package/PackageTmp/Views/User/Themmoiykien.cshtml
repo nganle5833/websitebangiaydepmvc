@@ -1,0 +1,124 @@
+﻿@model WebBanGiayDep.Models.YKIENKHACHHANG
+
+@{
+    ViewBag.Title = "Themmoiykien";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=submit] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+    .container {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+
+    .thanhvien {
+        margin: 0 200px 10px 200px;
+    }
+
+        .thanhvien h3 {
+            font-weight: bold;
+            font-size: 17px;
+        }
+</style>
+
+<h1 style="font-size: 30px; margin: 20px 0 20px 200px; font-weight: bold ">Đóng góp ý kiến</h1>
+<div class="container" style=" margin: 0 200px 20px 200px;">
+    <br />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                <h1>Email</h1>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h1>Họ tên</h1>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h1>Ngày gửi</h1>
+                <div class="col-md-10">
+                    <input type="date" name="NgayGui" />
+                    @Html.ValidationMessageFor(model => model.NgayGui)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h1>Nội dung</h1>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="GỬI" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+    <h1 style="font-size: 30px; margin: 20px 0 20px 200px; font-weight: bold; text-align:center">Thông tin liên hệ</h1>
+    <div class="thanhvien">
+        <h3>Thông tin liên hệ: </h3>
+        <br />
+        <h2>&#8226; Số điện thoại: (+84) 9898998</h2>
+        <h2>&#8226; Email: shopgthaonguyen@gmail.com</h2>
+        <br>
+        <h3>Mạng xã hội: </h3>
+        <br />
+        <h2>&#8226; Facebook: https://www.facebook.com/shopgthaonguyen</h2>
+        <h2>&#8226; Instagram: https://www.instagram.com/shopgthaonguyen</h2>
+        <br />
+        <h2><h3>Địa chỉ: </h3>23k7, Bình Đáng, Bình Hòa, Thuận An, Bình Dương</h2>
+        <br />
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3917.5483910472553!2d106.73415491535653!3d10.92188565947709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d9484bec02d9%3A0xe251fb41782dc72e!2zU2hvcCBHacOgeSBEw6lwIFRo4bqjbyBOZ3V5w6pu!5e0!3m2!1svi!2s!4v1654690293016!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <br />
+    </div>
+
+

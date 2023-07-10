@@ -1,0 +1,120 @@
+﻿@using WebBanGiayDep.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<WebBanGiayDep.Models.SANPHAM>
+
+@{
+    ViewBag.Title = "SanPham";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 7px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+</style>
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(function () {
+        $(".DaGiaoClick").click(function () {
+            var _MaDH = $(this).attr("data-id");
+            $.post("/Admin/TrangThaiSanPham", { "id": _MaDH },
+                function (data) {
+                    $('#img_AnHien-' + _MaDH).attr('src', data);
+                });
+        });
+    });
+</script>
+<div class="wrap" style="padding-top:2%; padding-left:10%; padding-right:10%; padding-bottom:5%">
+    <h2 style="text-align: center; ">QUẢN LÝ THÔNG TIN SẢN PHẨM</h2>
+    <a href="@Url.Action("ThemMoiSanPham", "Admin")" class="button">THÊM SẢN PHẨM</a>
+    <table class="table" border="1">
+        <tr>
+            <th>Tên Sản Phẩm</th>
+            <th>Size</th>
+            <th width="200px">Ảnh Bìa</th>
+            <th width="140px">Giá Bán</th>
+            <th>Thương Hiệu</th>
+            <th>Trạng Thái</th>
+            <th width="150px">Nhà Cung Cấp</th>
+            <th>Loại Giày</th>
+            <th>BH</th>
+            <th width="100px">Ngày Cập Nhật</th>
+            <th>SL.Tồn</th>
+            <th width="200px"></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenGiay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Size)
+        </td>
+        <td>
+            <img src=@Url.Content("~/images/"+ @item.AnhBia) />
+        </td>
+        <td>
+            @String.Format("{0:0,0}", item.GiaBan) VNĐ
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.THUONGHIEU.TenThuongHieu)
+        </td>
+        <td style="text-align: center">
+            @if (item.TrangThai == true)
+            {
+                <a href="#" class="DaGiaoClick" data-id="@item.MaGiay">
+                    <img src="/images/Admin/Icons/icon_Hien.png" id="img_AnHien-@item.MaGiay" title="Còn hàng" />
+                </a>
+            }
+            else
+            {
+                <a href="#" class="DaGiaoClick" data-id="@item.MaGiay">
+                    <img src="/images/Admin/Icons/icon_An.png" id="img_AnHien-@item.MaGiay" title="Hết hàng" />
+                </a>
+            }
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.NHACUNGCAP.TenNCC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LOAIGIAY.TenLoai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThoiGianBaoHanh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayCapNhat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoLuongTon)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "SuaSanPham", new { id = item.MaGiay }) |
+            @Html.ActionLink("Chi tiết", "ChiTietSanPham", new { id = item.MaGiay }) |
+            @Html.ActionLink("Xóa", "XoaSanPham", new { id = item.MaGiay })
+        </td>
+    </tr>
+        }
+
+    </table>
+    <br />
+    <div class="MenuTrang" style=" text-align:center">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("SanPham", new { page }))
+    </div>
+</div>
+
+

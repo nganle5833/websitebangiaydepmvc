@@ -1,0 +1,96 @@
+﻿@model WebBanGiayDep.Models.KHACHHANG
+
+@{
+    ViewBag.Title = "MyProfile";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<style>
+
+    input .form-control text-box single-line {
+        padding: 10px 15px;
+        width: 97%;
+        color: #000;
+        font-size: 0.8125em;
+        border: 1px solid #f0f0f0;
+        background: #fff;
+        outline: none;
+        display: block;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    input[type="datetime"] {
+        padding: 10px 15px;
+        width: 97%;
+        color: #000;
+        font-size: 0.8125em;
+        border: 1px solid #f0f0f0;
+        background: #fff;
+        outline: none;
+        display: block;
+        font-family: 'Open Sans', sans-serif;
+    }
+</style>
+
+<div class="login">
+    <div class="wrap">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="col_1_of_login span_1_of_login">
+                <div class="login-title">
+                    <h4 class="title">HỒ SƠ CỦA TÔI</h4>
+                    <div class="comments-area">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.MaKH)
+                        <form>
+                            <p>
+                                <label>Tên tài khoản</label>
+                                <span>*</span>
+                                <div>@Model.TaiKhoanKH</div>
+                            </p>
+
+                            <p>
+                                <label>Họ tên khách hàng</label>
+                                <span>*</span>
+                                @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+                            </p>
+
+                            <p>
+                                <label>Email</label>
+                                <span>*</span>
+                                <div>@Model.EmailKH</div>
+                            </p>
+
+                            <p>
+                                <label>Địa chỉ</label>
+                                <span>*</span>
+                                @Html.EditorFor(model => model.DiaChiKH, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DiaChiKH, "", new { @class = "text-danger" })
+                            </p>
+
+                            <p>
+                                <label>Số điện thoại</label>
+                                <span>*</span>
+                                @Html.EditorFor(model => model.DienThoaiKH, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DienThoaiKH, "", new { @class = "text-danger" })
+                            </p>
+
+                            <p>
+                                <label>Ngày sinh</label>
+                                <span>*</span>
+                                @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+                            </p>
+
+                            <p>
+                                <input type="submit" value="Lưu">
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        }
+    </div>
+</div>

@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Dangnhap";
+    Layout = "~/Views/Shared/_LayoutTaiKhoan.cshtml";
+}
+<div class="login">
+    <div class="wrap">
+        <div class="col_1_of_login span_1_of_login">
+            <h4 class="title">BẠN CHƯA CÓ TÀI KHOẢN?</h4>
+            <h5 class="sub_title">Đăng ký tài khoản</h5>
+            <div class="button1">
+                <a href="@Url.Action("Dangky", "User")"><input type="submit" name="Submit" value="Đăng ký ngay"></a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            <div class="col_1_of_login span_1_of_login">
+                <div class="login-title">
+                    <h4 class="title">ĐĂNG NHẬP</h4>
+                    <div class="comments-area">
+                        <form>
+                            <p>
+                                <label>Tên đăng nhập</label>
+                                <span>*</span>
+                                <input type="text" value="" @Html.TextBox("TenDN") @ViewData["Loi1"]
+                            </p>
+                            <p>
+                                <label>Mật khẩu</label>
+                                <span>*</span>
+                                <input type="password" value="" @Html.Password("MatKhau") @ViewData["Loi2"]
+                            </p>
+                            @*<p id="login-form-remember">
+                                    <label><a href="#">Forget Your Password ? </a></label>
+                                </p>*@
+                            <p>
+                                <input type="submit" value="Đăng nhập">
+                            </p>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="clear"></div>
+    </div>
+</div>
+

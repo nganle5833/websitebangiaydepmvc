@@ -1,0 +1,54 @@
+﻿@model WebBanGiayDep.Models.LOAIGIAY
+
+@{
+    ViewBag.Title = "XoaLoaiGiay";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    dt {
+        font-size: 16px
+    }
+</style>
+<div class="wrap" style="padding-top:2%; padding-left:10%; padding-right:10%; padding-bottom:5%">
+    <h2 style="text-align:center">XÁC NHẬN XÓA THÔNG TIN LOẠI GIÀY</h2>
+    <br />
+    <h2>Bạn quyết định xóa loại giày này?</h2>
+    <br />
+    <dl class="dl-horizontal">
+        <dt>
+          Tên loại giày
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenLoai)
+        </dd>
+
+        <dt>
+           Trạng thái
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrangThai)
+        </dd>
+
+        <dt>
+            Giới tính
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GioiTinh)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" style="background-color: #4CAF50; color: white; font-size: 16px"/> |
+            @Html.ActionLink("Trở về trang loại giày", "LoaiGiay")
+        </div>
+    }
+</div>

@@ -1,0 +1,8 @@
+﻿@model IEnumerable<WebBanGiayDep.Models.LOAIGIAY>
+@foreach (var item in Model)
+{
+<ul>
+    <li><a href="@Url.Action("SPTheoGioiTinh","Home",new { id = item.MaLoai})">@item.TenLoai</a></li>
+</ul>
+   
+}

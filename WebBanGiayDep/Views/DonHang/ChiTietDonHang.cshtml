@@ -1,0 +1,76 @@
+﻿@using WebBanGiayDep.Models;
+@model List<CTDH>
+
+@{
+    ViewBag.Title = "OrderDetail";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<style>
+    td {
+        padding: 13px;
+        border: 1px solid black;
+        text-align: center;
+    }
+
+    h2 {
+        font-weight: bold;
+        font-size: 30px;
+        margin: 20px 0 20px 0;
+    }
+
+    .item {
+        height: 100px;
+    }
+
+    .button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 7px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+</style>
+<h2 style=" text-align:center"> Chi tiết đơn đặt hàng </h2>
+<table text-align="center" border="1" style="margin: auto">
+
+    <tr style="text-align:center; font-weight:bold">
+        <td> Mã Giày </td>
+        <td width="200">Tên Giày</td>
+        <td>Ảnh</td>
+        <td>Size</td>
+        <td>Số Lượng</td>
+        <td>Giá lúc bán</td>
+        <td>Thành Tiền</td>
+        <td></td>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr class="rem1">
+            <td>@item.iMaGiay</td>
+            <td>@item.iTenGIay</td>
+            <td>
+                <img src="~/images/@item.iAnhBia" style="width:100%; height:100px" />
+            </td>
+            <td>@item.iSize</td>
+            <td>@item.iSoLuong</td>
+            <td>@String.Format("{0:##,#}", item.iGiaLucBan) VNĐ</td>
+            <td>@String.Format("{0:##,#}", item.iThanhTien) VNĐ</td>
+            <td> <a href="@Url.Action("ChiTietSanPham", "Home", new {id = item.iMaGiay})">Chi tiết</a></td>
+        </tr>
+
+    }
+    <tr>
+        <td colspan="8"> Tổng tiền: @String.Format("{0:0,0}", @ViewBag.TongTien) VND </td>
+    </tr>
+</table>
+<br />
+<div style=" text-align:center; margin-bottom: 150px" >
+    <a href="@Url.Action("LichSuDonHang", "DonHang")" class="button">Trở về</a>
+</div>

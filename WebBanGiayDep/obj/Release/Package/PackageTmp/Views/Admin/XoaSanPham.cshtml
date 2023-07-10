@@ -1,0 +1,122 @@
+﻿@model WebBanGiayDep.Models.SANPHAM
+
+@{
+    ViewBag.Title = "XoaSanPham";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    dt {
+        font-size: 16px
+    }
+</style>
+<div class="wrap" style="padding-top:2%; padding-left:10%; padding-right:10%; padding-bottom:5%">
+    <h2 style="text-align:center">XÁC NHẬN XÓA THÔNG TIN SẢN PHẨM</h2>
+    <br />
+    <h2>Bạn quyết định xóa sản phẩm này?</h2>
+    <br />
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                Tên giày:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TenGiay)
+            </dd>
+
+            <dt>
+                Size giày:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Size)
+            </dd>
+
+            <dt>
+                Ảnh bìa:
+            </dt>
+
+            <dd>
+                <img src=@Url.Content("~/images/"+ Model.AnhBia) style="width:120px" />
+            </dd>
+
+            <dt>
+                Giá bán:
+            </dt>
+
+            <dd>
+                @String.Format("{0:0,0}", Model.GiaBan) VNĐ
+            </dd>
+
+            <dt>
+                Thương Hiệu
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.THUONGHIEU.TenThuongHieu)
+            </dd>
+
+            <dt>
+                Trạng Thái:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TrangThai)
+            </dd>
+
+            <dt>
+                Nhà Cung Cấp:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NHACUNGCAP.TenNCC)
+            </dd>
+
+            <dt>
+                Loại Giày:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LOAIGIAY.TenLoai)
+            </dd>
+
+            <dt>
+                Thời Gian Bảo Hành:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ThoiGianBaoHanh) Tháng
+            </dd>
+
+            <dt>
+                Ngày cập nhập:
+            </dt>
+
+            <dd>
+                @String.Format("{0:dd/MM/yyyy}", Model.NgayCapNhat)
+            </dd>
+
+            <dt>
+                Số Lượng tồn:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SoLuongTon)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Xóa" class="btn btn-default" style="background-color: #4CAF50; color: white; font-size: 16px" />
+            </div>
+        }
+        <br />
+        <div>
+            @Html.ActionLink("Trở về trang sản phẩm", "SanPham")
+        </div>
+    </div>
+</div>

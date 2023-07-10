@@ -1,0 +1,49 @@
+﻿@model WebBanGiayDep.Models.KHACHHANG
+
+@{
+    ViewBag.Title = "ChangePassword";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    var item = Model;
+}
+<div class="login">
+    <div class="wrap">
+        @using (Html.BeginForm(new { strURL = Request.Url.ToString() }))
+        {
+            Html.AntiForgeryToken();
+            <div class="col_1_of_login span_1_of_login">
+                <div class="login-title">
+                    <h4 class="title">Thay đổi mật khẩu</h4>
+                    <div class="comments-area">
+                        <form>
+                            <p>
+                                <label>Nhập mật khẩu cũ</label>
+                                <span>*</span>
+                                <input type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="Mật khẩu cũ" />
+                            </p>
+                            <p>
+                                <label>Nhập mật khẩu mới</label>
+                                <span>*</span>
+                                <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Mật khẩu mới">
+                            </p>
+
+                            <p>
+                                <label>Nhập lại mật khẩu</label>
+                                <span>*</span>
+                                <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" placeholder="Nhập lại mật khẩu mới">
+                            </p>
+
+                            <p>
+                                <input type="submit" value="Lưu">
+                            </p>
+
+                            <h3 id="Error">@ViewData["Error"]</h3>
+                            <h3 id="Success">@ViewData["Success"]</h3>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="clear"></div>
+    </div>
+</div>

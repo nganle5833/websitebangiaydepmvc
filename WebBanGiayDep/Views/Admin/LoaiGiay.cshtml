@@ -1,0 +1,88 @@
+﻿@model IEnumerable<WebBanGiayDep.Models.LOAIGIAY>
+
+@{
+    ViewBag.Title = "LoaiGiay";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 7px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+</style>
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(function () {
+        $(".DaGiaoClick").click(function () {
+            var _MaDH = $(this).attr("data-id");
+            $.post("/Admin/TrangThaiLoai", { "id": _MaDH },
+                function (data) {
+                    $('#img_AnHien-' + _MaDH).attr('src', data);
+                });
+        });
+    });
+</script>
+<div class="wrap" style="padding-top:2%; padding-left:10%; padding-right:10%; padding-bottom:5%">
+    <h2 style="text-align: center; ">QUẢN LÝ THÔNG TIN LOẠI GIÀY</h2>
+    <a href="@Url.Action("ThemMoiLoaiGiay", "Admin")" class="button">THÊM LOẠI GIÀY</a>
+    <table class="table" ; border="1">
+        <tr>
+            <th>
+               Tên loại
+            </th>
+            <th>
+              Trạng thái
+            </th>
+            <th>
+               Giới tính
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenLoai)
+                </td>
+                <td>
+                    @if (item.TrangThai == true)
+                    {
+                        <a href="#" class="DaGiaoClick" data-id="@item.MaLoai">
+                            <img src="/images/Admin/Icons/icon_Hien.png" id="img_AnHien-@item.MaLoai" title="Còn hàng" />
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="#" class="DaGiaoClick" data-id="@item.MaLoai">
+                            <img src="/images/Admin/Icons/icon_An.png" id="img_AnHien-@item.MaLoai" title="Hết hàng" />
+                        </a>
+                    }
+                </td>
+                <td>
+                    @if (item.GioiTinh == true)
+                    {
+                        <a>Nam</a>
+                    }
+                    else
+                    {
+                        <a>Nữ</a>
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "SuaLoaiGiay", new { id = item.MaLoai }) |
+                    @Html.ActionLink("Xóa", "XoaLoaiGiay", new { id = item.MaLoai })
+                </td>
+            </tr>
+        }
+    </table>
+</div>

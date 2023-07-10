@@ -1,0 +1,71 @@
+﻿@model WebBanGiayDep.Models.YKIENKHACHHANG
+
+@{
+    ViewBag.Title = "Xoaykienkhachhang";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    dt {
+        font-size: 16px
+    }
+</style>
+<div class="wrap" style="padding-top:2%; padding-left:10%; padding-right:10%; padding-bottom:5%">
+    <h2 style="text-align: center">XÁC NHẬN XÓA Ý KIẾN</h2>
+    <br />
+    <h3>Quyết định xóa ý kiến này?</h3>
+    <br />
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                Họ tên:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HoTen)
+            </dd>
+
+            <dt>
+                Ngày gửi:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NgayGui)
+            </dd>
+
+            <dt>
+                Nội dung:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NoiDung)
+            </dd>
+
+            @*<dt>
+                    @Html.DisplayNameFor(model => model.TrangThai)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TrangThai)
+                </dd>*@
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Xóa" class="btn btn-default" style="background-color: #4CAF50; color: white; font-size:16px" /> |
+                @Html.ActionLink("Trở về trang ý kiến", "ykienkhachhang")
+            </div>
+        }
+    </div>
+</div>

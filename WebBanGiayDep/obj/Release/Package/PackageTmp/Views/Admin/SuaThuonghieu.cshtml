@@ -1,0 +1,40 @@
+﻿@model WebBanGiayDep.Models.THUONGHIEU
+
+@{
+    ViewBag.Title = "SuaThuonghieu";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="wrap" style="padding-top:2%; padding-left:10%; padding-right:10%; padding-bottom:5%">
+    <h2 style="text-align:center">SỬA THÔNG TIN THƯƠNG HIỆU</h2>
+    <BR />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal" style="font-weight:bold">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.MaThuongHieu)
+
+            <div class="form-group">
+              Tên thương hiệu
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TenThuongHieu, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TenThuongHieu, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Cập nhật" class="btn btn-default"  style="background-color: #4CAF50; color: white; font-size: 16px"/>
+                </div>
+            </div>
+        </div>
+    }
+    <br />
+    <div>
+        @Html.ActionLink("Trở Về Quản Lý Thương Hiệu", "ThuongHieu")
+    </div>
+
+</div>
+

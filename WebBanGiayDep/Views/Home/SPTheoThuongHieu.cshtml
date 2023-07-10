@@ -1,0 +1,71 @@
+﻿@using WebBanGiayDep.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<SANPHAM>
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "SPTheoThuongHieu";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="login">
+    <div class="wrap">
+        <div class="List" style=" padding-left: 50px; padding-right: 50px">
+            @*<div class="mens-toolbar">
+                <div class="sort">
+                    <div class="sort-by">
+                        <label>Tìm kiếm</label>
+                        <select>
+                            <option value="">
+                                Phổ biến
+                            </option>
+                            <option value="">
+                                Giá : Cao tới thấp
+                            </option>
+                            <option value="">
+                                Giá : Thấp tới cao
+                            </option>
+                        </select>
+                        <a href=""><img src="images/arrow2.gif" alt="" class="v-middle"></a>
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+            </div>*@
+            <div class="clear"></div>
+            @*item *@
+            <div class="box1">
+                @foreach (var item in Model)
+                {
+                    <div class="col_1_of_single1 span_1_of_single1" style="margin: 0 20px 20px 0">
+                        <a href="@Url.Action("ChiTietSanPham", "Home",new {id = item.MaGiay } )">
+                            <div class="view1 view-fifth1">
+                                <div class="top_box">
+                                    <h3 class="m_1">@item.TenGiay</h3>
+                                    <p class="m_2">@item.MaThuongHieu</p>
+                                    <div class="grid_img">
+                                        <div class="css3"><img src="~/images/@item.AnhBia" style="width:173px; height:173px" alt="" /></div>
+                                        <div class="mask1">
+                                            <div class="info">Xem thêm</div>
+                                        </div>
+                                    </div>
+                                    <div class="price">@String.Format("{0:0,0}", item.GiaBan) VNĐ</div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </a>
+                    </div>
+                }
+                <div class="clear"></div>
+            </div>
+            @*end item *@
+            <br />
+            <div class="MenuTrang" style="text-align:center">
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+                @Html.PagedListPager(Model, page => Url.Action("SPTheoThuongHieu", new { page }))
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+

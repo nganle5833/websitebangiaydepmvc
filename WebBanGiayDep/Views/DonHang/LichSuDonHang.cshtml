@@ -1,0 +1,73 @@
+﻿@using WebBanGiayDep.Models;
+@model List<DONHANG>
+
+@{
+    ViewBag.Title = "OrderHistory";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<style>
+    td {
+        padding: 13px;
+        border: 1px solid black;
+        text-align: center;
+    }
+
+    h2 {
+        font-weight: bold;
+        font-size: 30px;
+        margin: 20px 0 20px 0;
+    }
+
+    .item {
+        height: 100px;
+    }
+
+    .button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 7px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+</style>
+
+<!--Lich su don hang-->
+
+<h2 style=" text-align:center"> Lịch sử đặt hàng </h2>
+<table text-align="center" border="1" style="margin: auto; margin-bottom:200px">
+    <tr style="text-align:center; font-weight:bold">
+        <td>Mã Đơn Hàng</td>
+        <td>Ngày Đặt</td>
+        <td>Ngày Giao Dự Kiến</td>
+        <td>Tình Trạng Đơn Hàng</td>
+        <td>Tổng Tiền</td>
+        <td></td>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="rem1">
+            <td class="invert">@item.MaDonHang</td>
+            <td class="invert">@String.Format("{0:dd/MM/yyyy}", item.NgayDat)</td>
+            <td class="invert">@String.Format("{0:dd/MM/yyyy}", item.NgayGiao)</td>
+            @if ((bool)item.TinhTrangGiaoHang)
+            {
+                <td class="invert" style="color: green"><i class="fa fa-check-square-o" aria-hidden="true" style="margin-right: 5px"></i>Đã Giao hàng</td>
+            }
+            else
+            {
+                <td class="invert" style="color: #EF4444"><i class="fa fa-truck" aria-hidden="true" style="margin-right: 5px"></i>Đang Vận Chuyển</td>
+            }
+            <td class="invert">@String.Format("{0:##,#}", item.TongTien) VNĐ</td>
+            <td class="invert">
+                <a href="@Url.Action("ChiTietDonHang","DonHang", new { maDonHang = item.MaDonHang, tongTien = item.TongTien})" class="btn btn-success">Chi Tiết Đơn Hàng</a>
+            </td>
+        </tr>
+    }
+
+</table>
